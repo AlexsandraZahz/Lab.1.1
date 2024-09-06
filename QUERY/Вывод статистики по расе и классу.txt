@@ -1,0 +1,12 @@
+CREATE FUNCTION GetPlayerCharacterStatisticsByClassRace (@class VARCHAR(50), @race VARCHAR(50))
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT s.idStatistics, s.idPlayers, s.idCharacters, s.totalPlaytime, s.totalKills, s.totalDeaths, s.totalDamageDealt, s.totalDamageTaken
+    FROM [Statistics] s
+    INNER JOIN Characters c ON s.idCharacters = c.idCharacters
+    WHERE c.class = @class AND c.race = @race
+)
+SELECT * FROM GetPlayerCharacterStatisticsByClassRace('warrior', 'human')
+

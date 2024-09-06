@@ -1,0 +1,40 @@
+CREATE TRIGGER trg_CheckUsername
+ON Accounts
+INSTEAD OF INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @username VARCHAR(255);
+    DECLARE @idAccounts INT;
+    DECLARE @password VARCHAR(255);
+    DECLARE @email VARCHAR(255);
+    DECLARE @registrationDate DATE;
+
+    -- Извлекаем значения из вставляемой записи
+    SELECT @username = username, @idAccounts = idAccounts, @password = password, @email = email, @registrationDate = registrationDate
+    FROM inserted;
+
+    -- Проверяем, существует ли уже пользователь с таким username
+    IF EXISTS (SELECT 1 FROM Accounts WHERE username = @username)
+    BEGIN
+        -- Если пользователь с таким username уже существует, выводим сообщение
+        PRINT 'A user with that name already exists. The entry will not be added.';
+    END
+    ELSE
+    BEGIN
+        -- Если пользователя с таким username не существует, вставляем новую запись
+        INSERT INTO Accounts (idAccounts, username, password, email, registrationDate)
+        VALUES (@idAccounts, @username, @password, @email, @registrationDate);
+    END;
+END;
+
+-- Пытаемся вставить новую запись с существующим username
+INSERT INTO Accounts (idAccounts, username, password, email, registrationDate)
+VALUES (233, 'Alexsandra Zazharshaya', 'password2', 'bel.ris2016@yandex.ru', GETDATE());
+
+-- Пытаемся вставить новую запись с новым username
+INSERT INTO Accounts (idAccounts, username, password, email, registrationDate)
+VALUES (2, 'new_user', 'password456', 'new_user@example.com', GETDATE()); 
+
+

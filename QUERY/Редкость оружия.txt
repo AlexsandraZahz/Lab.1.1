@@ -1,0 +1,10 @@
+CREATE FUNCTION GetItemsByRarity (@rarity VARCHAR(20))
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT idItems, name, description, properties, rarity, cost
+    FROM Items
+    WHERE rarity = @rarity
+)
+SELECT * FROM GetItemsByRarity('rare') - можно поменять  'common', 'rare', 'epic', 'legendary'

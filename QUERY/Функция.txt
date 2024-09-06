@@ -1,0 +1,29 @@
+CREATE FUNCTION CheckPlayerRegistrationn(@idAccounts INT, @checkDate DATE)
+RETURNS VARCHAR(255)
+AS
+BEGIN
+    DECLARE @registrationDate DATE;
+    DECLARE @result VARCHAR(255);
+
+    -- Получаем дату регистрации игрока по idAccounts
+    SELECT @registrationDate = registrationDate
+    FROM Players
+    WHERE idAccounts = @idAccounts;
+
+    -- Проверяем, был ли игрок зарегистрирован до указанной даты
+    IF @registrationDate <= @checkDate
+        SET @result = 'This user has been registered';
+    ELSE
+        SET @result = 'This user has not been registered';
+
+    RETURN @result;
+END;
+-------------------
+DECLARE @idAccounts INT = 1; -- Замените на нужный idAccounts
+DECLARE @checkDate DATE = '2023-11-15';
+DECLARE @result VARCHAR(255);
+
+EXEC @result = dbo.CheckPlayerRegistration @idAccounts, @checkDate;
+PRINT @result;
+
+

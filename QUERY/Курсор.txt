@@ -1,0 +1,33 @@
+DECLARE @idCharacters INT;
+DECLARE @idPlayers INT;
+DECLARE @name VARCHAR(255);
+DECLARE @level INT;
+DECLARE @experience INT;
+DECLARE @class VARCHAR(255);
+DECLARE @race VARCHAR(255);
+
+DECLARE character_cursor CURSOR FOR
+SELECT idCharacters, idPlayers, name, level, experience, class, race
+FROM Characters
+WHERE race = 'Dwarf';
+
+OPEN character_cursor;
+
+FETCH NEXT FROM character_cursor INTO @idCharacters, @idPlayers, @name, @level, @experience, @class, @race;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    PRINT 'idCharacters: ' + CAST(@idCharacters AS VARCHAR);
+    PRINT 'idPlayers: ' + CAST(@idPlayers AS VARCHAR);
+    PRINT 'Name: ' + @name;
+    PRINT 'Level: ' + CAST(@level AS VARCHAR);
+    PRINT 'Experience: ' + CAST(@experience AS VARCHAR);
+    PRINT 'Class: ' + @class;
+    PRINT 'Race: ' + @race;
+    PRINT '------------------------------';
+    
+    FETCH NEXT FROM character_cursor INTO @idCharacters, @idPlayers, @name, @level, @experience, @class, @race;
+END;
+
+CLOSE character_cursor;
+DEALLOCATE character_cursor;
