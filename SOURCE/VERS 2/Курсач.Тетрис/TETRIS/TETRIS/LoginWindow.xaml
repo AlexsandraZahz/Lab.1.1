@@ -1,0 +1,29 @@
+﻿<!-- Определение окна входа -->
+<Window x:Class="TETRIS.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Аутификация" Height="295.925" Width="511.512"
+        Icon="Assests/image/Icon.ico">
+    <!-- Установка иконки для окна -->
+
+    <!-- Определение сетки для размещения элементов -->
+    <Grid Margin="0,0,2,-3">
+        <!-- Установка фона сетки -->
+        <Grid.Background>
+            <ImageBrush ImageSource="Assests/image/Background.jpg"/>
+        </Grid.Background>
+
+        <!-- Определение стекпанели для размещения элементов -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!-- Отображение текста с инструкцией для ввода логина -->
+            <TextBlock Text="Введите логин:" Margin="0,0,0,10"/>
+            <!-- Поле ввода для логина -->
+            <TextBox x:Name="txtUsername" Width="200" Margin="0,0,0,10"/>
+            <!-- Кнопка для входа в игру -->
+            <Button x:Name="btnLogin" Content="Играть" Click="btnLogin_Click" Width="100" Margin="0,0,0,10" Background="LightGreen" Height="28"/>
+        </StackPanel>
+
+        <!-- Кнопка для отмены действия -->
+        <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Margin="369,172,48,67" Background="LightGreen"/>
+    </Grid>
+</Window>

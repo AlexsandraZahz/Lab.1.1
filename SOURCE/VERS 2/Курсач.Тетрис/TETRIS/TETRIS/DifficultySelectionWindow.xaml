@@ -1,0 +1,49 @@
+﻿<!-- Определение окна выбора уровня сложности -->
+<Window x:Class="TETRIS.DifficultySelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TETRIS"
+        mc:Ignorable="d"
+        Title="Выбор уровня сложности" Height="200" Width="400" ResizeMode="NoResize"
+        Icon="Assests/image/Icon.ico">
+    <!-- Установка иконки для окна -->
+
+    <!-- Определение сетки для размещения элементов -->
+    <Grid Margin="0,0,-6,0">
+        <!-- Установка фона сетки -->
+        <Grid.Background>
+            <ImageBrush ImageSource="Assests/image/Background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <!-- Определение строк сетки -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- Первая строка занимает оставшееся пространство -->
+            <RowDefinition Height="Auto"/>
+            <!-- Вторая строка имеет автоматическую высоту -->
+        </Grid.RowDefinitions>
+
+        <!-- Комбобокс для выбора уровня сложности -->
+        <ComboBox x:Name="DifficultyComboBox"
+                  Grid.Row="0"
+                  Margin="20"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Center">
+            <!-- Комбобокс растягивается по горизонтали и выравнивается по центру по вертикали -->
+            <!-- Элементы комбобокса -->
+            <ComboBoxItem Content="Легко"/>
+            <ComboBoxItem Content="Средне"/>
+            <ComboBoxItem Content="Сложно"/>
+        </ComboBox>
+
+        <!-- Стекпанель для размещения кнопок -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,20" >
+            <!-- Кнопка для отмены выбора сложности -->
+            <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Margin="5,0,5,5" Background="LightGreen" Width="63"/>
+            <!-- Кнопка для подтверждения выбора сложности -->
+            <Button x:Name="OkButton" Content="Выбрать" Click="OkButton_Click" Margin="5,0,5,5" Background="LightGreen" Width="66"/>
+        </StackPanel>
+    </Grid>
+</Window>

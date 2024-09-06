@@ -1,0 +1,96 @@
+﻿<!-- Определение окна статистики -->
+<Window x:Class="TETRIS.StatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Статистика" Height="300" Width="400"
+        Icon="Assests/image/Icon.ico">
+    <!-- Установка иконки для окна -->
+
+    <!-- Определение стилей для DataGrid -->
+    <Window.Resources>
+        <Style TargetType="DataGrid">
+            <!-- Установка фона DataGrid -->
+            <Setter Property="Background" Value="Transparent" />
+            <!-- Установка толщины границы DataGrid -->
+            <Setter Property="BorderThickness" Value="0" />
+            <!-- Установка альтернативного цвета фона строк DataGrid -->
+            <Setter Property="AlternatingRowBackground" Value="#FFE8E8E8" />
+            <!-- Установка видимости сетки DataGrid -->
+            <Setter Property="GridLinesVisibility" Value="None" />
+            <!-- Установка видимости заголовков столбцов DataGrid -->
+            <Setter Property="HeadersVisibility" Value="Column" />
+            <!-- Установка высоты строк DataGrid -->
+            <Setter Property="RowHeight" Value="30" />
+            <!-- Установка размера шрифта DataGrid -->
+            <Setter Property="FontSize" Value="14" />
+            <!-- Установка цвета горизонтальных линий сетки DataGrid -->
+            <Setter Property="HorizontalGridLinesBrush" Value="#FFD6D6D6" />
+            <!-- Установка цвета вертикальных линий сетки DataGrid -->
+            <Setter Property="VerticalGridLinesBrush" Value="#FFD6D6D6" />
+            <!-- Установка режима выбора в DataGrid -->
+            <Setter Property="SelectionMode" Value="Single" />
+            <!-- Установка возможности изменять размер строк в DataGrid -->
+            <Setter Property="CanUserResizeRows" Value="False" />
+            <!-- Установка возможности изменять порядок столбцов в DataGrid -->
+            <Setter Property="CanUserReorderColumns" Value="False" />
+            <!-- Установка возможности сортировать столбцы в DataGrid -->
+            <Setter Property="CanUserSortColumns" Value="False" />
+            <!-- Установка режима только для чтения в DataGrid -->
+            <Setter Property="IsReadOnly" Value="True" />
+            <!-- Установка автоматического генерирования столбцов в DataGrid -->
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <!-- Установка видимости горизонтальной полосы прокрутки DataGrid -->
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+            <!-- Установка видимости вертикальной полосы прокрутки DataGrid -->
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+
+        <!-- Определение стилей для заголовков столбцов DataGrid -->
+        <Style TargetType="DataGridColumnHeader">
+            <!-- Установка фона заголовков столбцов DataGrid -->
+            <Setter Property="Background" Value="#FFE8E8E8" />
+            <!-- Установка толщины границы заголовков столбцов DataGrid -->
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+            <!-- Установка цвета границы заголовков столбцов DataGrid -->
+            <Setter Property="BorderBrush" Value="#FFD6D6D6" />
+            <!-- Установка отступов заголовков столбцов DataGrid -->
+            <Setter Property="Padding" Value="6" />
+            <!-- Установка горизонтального выравнивания содержимого заголовков столбцов DataGrid -->
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <!-- Установка начертания шрифта заголовков столбцов DataGrid -->
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Window.Resources>
+
+    <!-- Определение сетки для размещения элементов -->
+    <Grid>
+        <!-- Установка фона сетки -->
+        <Grid.Background>
+            <ImageBrush ImageSource="Assests/image/Background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <!-- Определение DataGrid для отображения статистики -->
+        <DataGrid x:Name="StatisticsDataGrid" AutoGenerateColumns="False" Margin="10,10,145,38" Background="Transparent" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5">
+            <!-- Определение стилей для ячеек DataGrid -->
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell">
+                    <!-- Установка фона ячеек DataGrid -->
+                    <Setter Property="Background" Value="Transparent" />
+                    <!-- Установка толщины границы ячеек DataGrid -->
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
+            </DataGrid.Resources>
+
+            <!-- Определение столбцов DataGrid -->
+            <DataGrid.Columns>
+                <!-- Столбец для отображения имени пользователя -->
+                <DataGridTextColumn Header="Имя пользователя" Binding="{Binding Username}" />
+                <!-- Столбец для отображения очков -->
+                <DataGridTextColumn Header="Очки" Binding="{Binding Score}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Определение кнопки для отмены действия -->
+        <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Margin="307,0,10,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Height="25" Background="LightGreen" />
+    </Grid>
+</Window>
